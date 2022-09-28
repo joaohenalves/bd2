@@ -1,5 +1,7 @@
-CREATE OR REPLACE FUNCTION incrementa(num int)
-RETURNS int
+-- Exercício 1
+
+CREATE OR REPLACE FUNCTION incrementa(num INTEGER)
+RETURNS INTEGER
 AS
 $$
 BEGIN
@@ -8,7 +10,9 @@ END;
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION retornaTexto(texto text)
+-- Exercício 2
+
+CREATE OR REPLACE FUNCTION retornaTexto(texto TEXT)
 RETURNS text
 AS
 $$
@@ -18,13 +22,15 @@ END;
 $$
 LANGUAGE plpgsql;
 
+-- Exercício 3
+
 CREATE TABLE usuario (
-    ide INTEGER NOT NULL,
+    id INTEGER NOT NULL,
     nome VARCHAR(50) NOT NULL,
-    CONSTRAINT pk_ide PRIMARY KEY (ide)
+    CONSTRAINT pk_id PRIMARY KEY (id)
 );
 
-INSERT INTO usuario (ide,nome) VALUES 
+INSERT INTO usuario (id,nome) VALUES 
 ('1','aaaaaa'),
 ('2','bbbbbb'),
 ('3','cccccc'),
@@ -33,14 +39,15 @@ INSERT INTO usuario (ide,nome) VALUES
 
 
 CREATE OR REPLACE FUNCTION retornaMedia()
-RETURNS TABLE (ide INTEGER, nome VARCHAR(50))
+RETURNS TABLE (id INTEGER, nome VARCHAR(50))
 AS
 $$
 BEGIN
-RETURN QUERY SELECT u.ide, u.nome FROM usuario u WHERE u.ide > (SELECT avg(u.ide) FROM usuario u);
+RETURN QUERY SELECT u.id, u.nome FROM usuario u WHERE u.id > (SELECT avg(u.id) FROM usuario u);
 END;
 $$
 LANGUAGE plpgsql;
+
 
 
 CREATE TABLE employee (
@@ -56,7 +63,7 @@ RETURNS TABLE (id INTEGER, nome VARCHAR(50), anonasc INTEGER, salary MONEY)
 AS
 $$
 BEGIN
-RETURN QUERY UPDATE employee set salary *= 1.1;
+RETURN QUERY UPDATE employee SET salary *= 1.1;
 END;
 $$
 LANGUAGE plpgsql;
