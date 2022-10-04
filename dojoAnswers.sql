@@ -60,3 +60,5 @@ from empregados e natural join avgtable a where e.salario >= a.average;
 
 select e1.nome as supervisor, e2.nome as supervisionado 
 from empregados e1 right join empregados e2 on e1.emp_id=e2.supervisor_id;
+
+--
